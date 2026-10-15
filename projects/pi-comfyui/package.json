@@ -1,0 +1,66 @@
+{
+    "name": "@chlamydomonos/pi-comfyui",
+    "version": "0.1.0",
+    "description": "ComfyUI integration for Pi: agent tools (generator files) + pi-web live panel",
+    "type": "module",
+    "keywords": [
+        "pi-package",
+        "pi",
+        "pi-coding-agent",
+        "comfyui",
+        "image-generation",
+        "pi-web"
+    ],
+    "license": "MIT",
+    "files": [
+        "src",
+        "dist",
+        "examples",
+        "README.md"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "prepack": "node esbuild.config.mjs",
+    "pi": {
+        "extensions": [
+            "./src/extension/index.ts"
+        ]
+    },
+    "piWeb": {
+        "plugins": [
+            {
+                "id": "comfyui",
+                "module": "dist/plugin/browser/index.js",
+                "serverModule": "dist/plugin/server/index.js",
+                "browserRoot": "dist/plugin/browser",
+                "machineSpecific": true,
+                "defaultEnabled": true
+            }
+        ]
+    },
+    "scripts": {
+        "build": "node esbuild.config.mjs",
+        "build:watch": "node esbuild.config.mjs --watch",
+        "typecheck": "tsc --noEmit",
+        "smoke": "node scripts/smoke.mjs"
+    },
+    "dependencies": {
+        "jiti": "2.7.0",
+        "ws": "^8.22.0"
+    },
+    "peerDependencies": {
+        "@earendil-works/pi-coding-agent": "*",
+        "typebox": "*"
+    },
+    "devDependencies": {
+        "@earendil-works/pi-coding-agent": "^1.1.0",
+        "@jmfederico/pi-web": "^1.202610.1",
+        "@types/node": "^22.19.0",
+        "@types/ws": "^8.18.1",
+        "esbuild": "^0.28.0",
+        "lit": "^3.3.3",
+        "typebox": "^1.3.27",
+        "typescript": "^6.0.3"
+    }
+}

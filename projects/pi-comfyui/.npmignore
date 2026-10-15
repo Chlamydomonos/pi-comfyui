@@ -1,0 +1,8 @@
+# 构建中间产物(files 已含 dist,这里只挡 sourcemap 等)
+dist/**/*.map
+*.tsbuildinfo
+
+# 开发文件
+scripts/
+node_modules/
+.*.swp
